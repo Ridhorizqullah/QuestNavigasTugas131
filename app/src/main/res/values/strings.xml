@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">praktikum6</string>
+
+    <!-- Home -->
+    <string name="welcome_title">Selamat Datang!</string>
+    <string name="welcome_subtitle">Aplikasi Pendaftaran Mahasiswa</string>
+    <string name="button_daftar">Daftar Sekarang</string>
+    <string name="button_lihat_daftar">Lihat Daftar Pendaftar</string>
+
 </resources>
