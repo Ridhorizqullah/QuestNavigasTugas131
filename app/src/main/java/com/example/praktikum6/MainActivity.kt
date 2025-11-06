@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Praktikum6Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    Praktikum6App( // 👈 Ganti dari Greeting ke Praktikum6App
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

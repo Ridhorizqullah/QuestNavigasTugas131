@@ -3,6 +3,7 @@ package com.example.praktikum6
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,7 +20,7 @@ data class Pendaftar(
 )
 
 @Composable
-fun Praktikum6App() {
+fun Praktikum6App(modifier: Modifier) {
     val navController = rememberNavController()
     val daftarPendaftar = remember { mutableStateListOf<Pendaftar>() }
 

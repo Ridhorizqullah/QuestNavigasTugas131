@@ -54,7 +54,7 @@ fun FormPendaftaranPage(
                     modifier = Modifier.size(40.dp)
                 ) {
                     Icon(
-                        imageVector = ,
+                        imageVector = androidx.compose.material.icons.Icons.Default.ArrowBack,
                         contentDescription = "Kembali",
                         tint = Color.White
                     )
