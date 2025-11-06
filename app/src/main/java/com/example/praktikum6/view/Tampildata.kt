@@ -3,6 +3,7 @@ package com.example.praktikum6.view
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.praktikum6.Pendaftar
 import com.example.praktikum6.R
 
 @Composable
@@ -132,10 +134,6 @@ fun Tampildata(
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = Color(0xFFF3E5F5),
                         contentColor = Color(0xFF9C27B0)
-                    ),
-                    border = ButtonDefaults.outlinedButtonBorder.copy(
-                        color = Color(0xFF9C27B0),
-                        width = 1.dp
                     )
                 ) {
                     Text(

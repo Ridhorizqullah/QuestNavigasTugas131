@@ -17,7 +17,8 @@ import com.example.praktikum6.R
 
 @Composable
 fun Home(
-    onDaftarClick: () -> Unit
+    onDaftarClick: () -> Unit,
+    onLihatDaftarClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
