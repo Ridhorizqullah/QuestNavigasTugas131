@@ -8,6 +8,16 @@
     <string name="nim_mahasiswa">20230140131</string>
     <string name="button_submit">Submit</string>
 
-
+    <!-- Form Pendaftaran -->
+    <string name="form_title">Formulir Pendaftaran</string>
+    <string name="label_nama">Nama Lengkap</string>
+    <string name="hint_nama">Masukkan nama lengkap</string>
+    <string name="label_jenis_kelamin">Jenis Kelamin</string>
+    <string name="option_laki">Laki-laki</string>
+    <string name="option_perempuan">Perempuan</string>
+    <string name="label_status">Status Perkawinan</string>
+    <string name="option_belum_kawin">Belum Kawin</string>
+    <string name="option_sudah_kawin">Sudah Kawin</string>
+    <string name="button_simpan">Simpan</string>
 
 </resources>
