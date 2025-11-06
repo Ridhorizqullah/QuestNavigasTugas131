@@ -23,6 +23,7 @@ import com.example.praktikum6.R
 
 @Composable
 fun FormPendaftaranPage(
+    onSimpan: (String, String, String, String) -> Unit,
     onBack: () -> Unit
 ) {
     val context = LocalContext.current
@@ -32,30 +33,23 @@ fun FormPendaftaranPage(
     var statusPerkawinan by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
 
-    var namaError by remember { mutableStateOf(false) }
-    var alamatError by remember { mutableStateOf(false) }
-
     val jenisKelaminOptions = listOf("Laki-laki", "Perempuan")
     val statusPerkawinanOptions = listOf("Janda", "Lajang", "Duda")
 
-    // Tidak perlu Scaffold jika ingin background full — pakai Column root
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF3E5F5)) // Ungu muda
+            .background(Color(0xFFF3E5F5))
     ) {
-        // Header
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
-                .background(Color(0xFFCE93D8)) // Ungu header
+                .background(Color(0xFFCE93D8))
                 .padding(horizontal = 24.dp),
             contentAlignment = Alignment.CenterStart
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(
                     onClick = onBack,
                     modifier = Modifier.size(40.dp)
@@ -78,7 +72,6 @@ fun FormPendaftaranPage(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Card Form
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -95,7 +88,7 @@ fun FormPendaftaranPage(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                // Nama Lengkap
+                // Nama
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = stringResource(R.string.label_nama),
@@ -105,10 +98,7 @@ fun FormPendaftaranPage(
                     )
                     OutlinedTextField(
                         value = namaLengkap,
-                        onValueChange = {
-                            namaLengkap = it
-                            namaError = false
-                        },
+                        onValueChange = { namaLengkap = it },
                         placeholder = { Text(stringResource(R.string.hint_nama)) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp),
@@ -116,17 +106,8 @@ fun FormPendaftaranPage(
                             unfocusedBorderColor = Color(0xFFB39DDB),
                             focusedBorderColor = Color(0xFF9C27B0)
                         ),
-                        isError = namaError,
                         singleLine = true
                     )
-                    if (namaError) {
-                        Text(
-                            text = "Nama lengkap harus diisi",
-                            color = Color.Red,
-                            fontSize = 12.sp,
-                            modifier = Modifier.padding(start = 8.dp, top = 4.dp)
-                        )
-                    }
                 }
 
                 // Jenis Kelamin
@@ -150,7 +131,7 @@ fun FormPendaftaranPage(
                         ) {
                             RadioButton(
                                 selected = jenisKelamin == option,
-                                onClick = null, // handled by Row
+                                onClick = null,
                                 colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF9C27B0))
                             )
                             Spacer(modifier = Modifier.width(8.dp))
@@ -159,7 +140,7 @@ fun FormPendaftaranPage(
                     }
                 }
 
-                // Status Perkawinan
+                // Status
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = stringResource(R.string.label_status),
@@ -199,10 +180,7 @@ fun FormPendaftaranPage(
                     )
                     OutlinedTextField(
                         value = alamat,
-                        onValueChange = {
-                            alamat = it
-                            alamatError = false
-                        },
+                        onValueChange = { alamat = it },
                         placeholder = { Text("Alamat") },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(8.dp),
@@ -210,45 +188,20 @@ fun FormPendaftaranPage(
                             unfocusedBorderColor = Color(0xFFB39DDB),
                             focusedBorderColor = Color(0xFF9C27B0)
                         ),
-                        isError = alamatError,
                         singleLine = true
                     )
-                    if (alamatError) {
-                        Text(
-                            text = "Alamat harus diisi",
-                            color = Color.Red,
-                            fontSize = 12.sp,
-                            modifier = Modifier.padding(start = 8.dp, top = 4.dp)
-                        )
-                    }
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Tombol Submit
                 Button(
                     onClick = {
-                        namaError = namaLengkap.isEmpty()
-                        alamatError = alamat.isEmpty()
-
-                        if (namaLengkap.isEmpty()) {
-                            Toast.makeText(context, "Nama lengkap harus diisi", Toast.LENGTH_SHORT).show()
+                        if (namaLengkap.isEmpty() || jenisKelamin.isEmpty() ||
+                            statusPerkawinan.isEmpty() || alamat.isEmpty()) {
+                            Toast.makeText(context, "Semua field wajib diisi", Toast.LENGTH_SHORT).show()
                             return@Button
                         }
-                        if (jenisKelamin.isEmpty()) {
-                            Toast.makeText(context, "Pilih jenis kelamin", Toast.LENGTH_SHORT).show()
-                            return@Button
-                        }
-                        if (statusPerkawinan.isEmpty()) {
-                            Toast.makeText(context, "Pilih status perkawinan", Toast.LENGTH_SHORT).show()
-                            return@Button
-                        }
-                        if (alamat.isEmpty()) {
-                            Toast.makeText(context, "Alamat harus diisi", Toast.LENGTH_SHORT).show()
-                            return@Button
-                        }
-
-                        Toast.makeText(context, "Pendaftaran berhasil!", Toast.LENGTH_LONG).show()
+                        onSimpan(namaLengkap, jenisKelamin, statusPerkawinan, alamat)
                     },
                     modifier = Modifier
                         .fillMaxWidth()

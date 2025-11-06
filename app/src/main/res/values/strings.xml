@@ -14,4 +14,10 @@
     <string name="hint_nama">Isian nama lengkap</string>
     <string name="label_jenis_kelamin">JENIS KELAMIN</string>
     <string name="label_status">STATUS PERKAWINAN</string>
+
+    <!-- List -->
+    <string name="list_title">List Daftar Peserta</string>
+    <string name="empty_list">Belum ada data pendaftar.</string>
+    <string name="button_beranda">Beranda</string>
+    <string name="button_formulir">Formulir Pendaftaran</string>
 </resources>
