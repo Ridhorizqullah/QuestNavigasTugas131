@@ -30,6 +30,12 @@ fun Home(
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 4.dp)
         )
+        Text(
+            text = stringResource(R.string.welcome_subtitle),
+            fontSize = 18.sp,
+            modifier = Modifier.padding(bottom = 32.dp)
+        )
+
 
 
 
