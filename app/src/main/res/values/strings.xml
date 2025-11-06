@@ -3,7 +3,7 @@
 
     <!-- Home -->
     <string name="welcome_title">Selamat Datang!</string>
-    <string name="welcome_subtitle">Aplikasi Pendaftaran Mahasiswa</string>
+    <string name="welcome_subtitle">Aplikasi Pendaftaran </string>
     <string name="nama_mahasiswa">Muhammad Ridho Rizqullah</string>
     <string name="nim_mahasiswa">20230140131</string>
     <string name="button_submit">Submit</string>
