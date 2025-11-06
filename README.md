@@ -1,17 +1,22 @@
 # Aplikasi Pendaftaran (Android)
 
-Dibuat menggunakan **Kotlin & Jetpack Compose**.
+Aplikasi sederhana untuk mengelola pendaftaran peserta. Dibuat dengan Kotlin & Jetpack Compose.
 
-## Alur Aplikasi
+## 📱 Tampilan Aplikasi
 
-### 1. Halaman Utama  
-<img src="Screenshot_20251107_022203.png" width="300">
+### 1. Halaman Utama
+![Halaman Utama](https://i.imgur.com/placeholder.png)  
+*(Screenshot: Selamat Datang + Nama & NIM)*
 
-### 2. Formulir Pendaftaran  
-<img src="Screenshot_20251107_022216.png" width="300">
+### 2. Formulir Pendaftaran
+![Formulir Pendaftaran](https://i.imgur.com/placeholder.png)  
+*(Screenshot: Isian Nama, Jenis Kelamin, Status, Alamat)*
 
-### 3. Pop-up Konfirmasi  
-<img src="Screenshot_20251107_021421.png" width="300">
+### 3. Pop-up Konfirmasi
+![Pop-up Sukses](https://i.imgur.com/placeholder.png)  
+*(Screenshot: "Pendaftaran Berhasil!" + ringkasan data)*
 
-### 4. Daftar Peserta  
-<img src="Screenshot_20251107_022232.png" width="300">
+### 4. Daftar Peserta
+![List Peserta](https://i.imgur.com/placeholder.png)  
+*(Screenshot: Data terdaftar + tombol Beranda & Formulir)*
+
