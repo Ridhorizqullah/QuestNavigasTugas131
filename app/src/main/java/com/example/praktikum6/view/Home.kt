@@ -45,6 +45,13 @@ fun Home(
                 .size(120.dp)
                 .padding(bottom = 24.dp)
         )
+        Text(
+            text = "${stringResource(R.string.nama_mahasiswa)} ${stringResource(R.string.nim_mahasiswa)}",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier.padding(bottom = 32.dp)
+        )
+
 
 
 
