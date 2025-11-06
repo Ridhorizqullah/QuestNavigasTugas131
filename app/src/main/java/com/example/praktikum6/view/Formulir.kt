@@ -32,6 +32,8 @@ fun FormPendaftaranPage(
     var statusPerkawinan by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
 
+    var showPopup by remember { mutableStateOf(false) }
+
     val jenisKelaminOptions = listOf("Laki-laki", "Perempuan")
     val statusPerkawinanOptions = listOf("Janda", "Lajang", "Duda")
 
@@ -40,6 +42,7 @@ fun FormPendaftaranPage(
             .fillMaxSize()
             .background(Color(0xFFF3E5F5))
     ) {
+        // Header
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -49,10 +52,7 @@ fun FormPendaftaranPage(
             contentAlignment = Alignment.CenterStart
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                IconButton(
-                    onClick = onBack,
-                    modifier = Modifier.size(40.dp)
-                ) {
+                IconButton(onClick = onBack, modifier = Modifier.size(40.dp)) {
                     Icon(
                         imageVector = androidx.compose.material.icons.Icons.Default.ArrowBack,
                         contentDescription = "Kembali",
@@ -71,6 +71,7 @@ fun FormPendaftaranPage(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Form Card
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -88,7 +89,7 @@ fun FormPendaftaranPage(
                 verticalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 // Nama
-                Column(modifier = Modifier.fillMaxWidth()) {
+                Column {
                     Text(
                         text = stringResource(R.string.label_nama),
                         fontSize = 12.sp,
@@ -110,7 +111,7 @@ fun FormPendaftaranPage(
                 }
 
                 // Jenis Kelamin
-                Column(modifier = Modifier.fillMaxWidth()) {
+                Column {
                     Text(
                         text = stringResource(R.string.label_jenis_kelamin),
                         fontSize = 12.sp,
@@ -130,7 +131,7 @@ fun FormPendaftaranPage(
                         ) {
                             RadioButton(
                                 selected = jenisKelamin == option,
-                                onClick = null,
+                                onClick = { jenisKelamin = option },
                                 colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF9C27B0))
                             )
                             Spacer(modifier = Modifier.width(8.dp))
@@ -139,8 +140,8 @@ fun FormPendaftaranPage(
                     }
                 }
 
-                // Status
-                Column(modifier = Modifier.fillMaxWidth()) {
+                // Status Perkawinan
+                Column {
                     Text(
                         text = stringResource(R.string.label_status),
                         fontSize = 12.sp,
@@ -160,7 +161,7 @@ fun FormPendaftaranPage(
                         ) {
                             RadioButton(
                                 selected = statusPerkawinan == option,
-                                onClick = null,
+                                onClick = { statusPerkawinan = option },
                                 colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF9C27B0))
                             )
                             Spacer(modifier = Modifier.width(8.dp))
@@ -170,7 +171,7 @@ fun FormPendaftaranPage(
                 }
 
                 // Alamat
-                Column(modifier = Modifier.fillMaxWidth()) {
+                Column {
                     Text(
                         text = "ALAMAT",
                         fontSize = 12.sp,
@@ -193,14 +194,18 @@ fun FormPendaftaranPage(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                // Tombol Submit
                 Button(
                     onClick = {
                         if (namaLengkap.isEmpty() || jenisKelamin.isEmpty() ||
-                            statusPerkawinan.isEmpty() || alamat.isEmpty()) {
-                            Toast.makeText(context, "Semua field wajib diisi", Toast.LENGTH_SHORT).show()
-                            return@Button
+                            statusPerkawinan.isEmpty() || alamat.isEmpty()
+                        ) {
+                            Toast.makeText(context, "Semua field wajib diisi", Toast.LENGTH_SHORT)
+                                .show()
+                        } else {
+                            onSimpan(namaLengkap, jenisKelamin, statusPerkawinan, alamat)
+                            showPopup = true
                         }
-                        onSimpan(namaLengkap, jenisKelamin, statusPerkawinan, alamat)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -208,9 +213,46 @@ fun FormPendaftaranPage(
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9C27B0))
                 ) {
-                    Text("Submit", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                    Text(
+                        text = "Submit",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
                 }
             }
+        }
+
+        // Popup Alert
+        if (showPopup) {
+            AlertDialog(
+                onDismissRequest = { /* Tidak bisa ditutup dengan klik luar */ },
+                title = {
+                    Text(
+                        text = "Pendaftaran Berhasil!",
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF9C27B0)
+                    )
+                },
+                text = {
+                    Text(
+                        text = """
+                            Nama: $namaLengkap
+                            Jenis Kelamin: $jenisKelamin
+                            Status: $statusPerkawinan
+                            Alamat: $alamat
+                        """.trimIndent(),
+                        fontSize = 16.sp
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = { showPopup = false }) {
+                        Text("OK", color = Color(0xFF9C27B0))
+                    }
+                },
+                containerColor = Color.White,
+                shape = RoundedCornerShape(16.dp)
+            )
         }
     }
 }
