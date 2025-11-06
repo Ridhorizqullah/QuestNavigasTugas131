@@ -3,8 +3,11 @@ package com.example.praktikum6.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -50,6 +53,13 @@ fun Home(
             fontSize = 18.sp,
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(bottom = 32.dp)
+        )
+        // Tombol Submit
+        Button(
+            onClick = onDaftarClick,
+            modifier = Modifier
+                .width(200.dp)
+                .height(50.dp)
         )
 
 
